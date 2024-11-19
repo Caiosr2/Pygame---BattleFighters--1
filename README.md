@@ -47,3 +47,5 @@ L-Chute
 5.1- Durante a partida é possível apertar o botão de pausa localizado entre as barras de vida, ele pode parar o tempo da partida além de permitir com que o jogador acesse a tela de controles, retornar ao menu de início, ligar e desligar o som da partida, e claro retomar a partida de onde parou
 
 6- Quando um dos jogadores chegar a 0 de HP ou o tempo chegar a 0 o jogo vai se encerrar, e o jogador vai se deparar com uma tela de vitória, em que ele terá como jogar a mesma partida de novo, trocar o personagem ou voltar para o menu.
+
+Para ver um video do jogo, vá ao arquivo Vídeopygame.mp4
