@@ -347,7 +347,61 @@ def prepartida(current_map_image,current_map_rect,Fullpicrect1,Fullpicrect2,Full
 
     return current_screen,game,time,timeMS
 
+def plota_personagens(atual_pos1,np1,gigante1,Px1_pos, Py1_pos,atual_pos2,np2,gigante2,Px2_pos, Py2_pos,last_keyj1,last_keyj2 ):
+         # Verifica base do j1
+        if atual_pos1==0:    
+            mov1 = pygame.image.load(f'images/Personagenspartida/lado/Perslado{np1}.png')
+        elif atual_pos1==1:
+            mov1 = pygame.image.load(f'images/Personagenspartida/soco/Perssoco{np1}.png')
+        else:
+            mov1 = pygame.image.load(f'images/Personagenspartida/chute/Perschute{np1}.png')
+        
+        # Verifica se está gigante
+        if gigante1==False:
+            mov1 = pygame.transform.scale(mov1, (DGwidth, DGheight))
+            extra_height1=0
+        else:
+            mov1 = pygame.transform.scale(mov1, (1.5*DGwidth, 2*DGheight))
+            extra_height1=DGheight/2
 
+        mov1_rect=mov1.get_rect()
+        mov1_rect.center=(Px1_pos,Py1_pos-extra_height1)
+
+        # Verifica base do j2
+        if atual_pos2==0:    
+            mov2 = pygame.image.load(f'images/Personagenspartida/lado/Perslado{np2}.png')
+        elif atual_pos2==1:
+            mov2 = pygame.image.load(f'images/Personagenspartida/soco/Perssoco{np2}.png')
+        else:
+            mov2 = pygame.image.load(f'images/Personagenspartida/chute/Perschute{np2}.png')
+
+        # Verifica se está gigante
+        if gigante2==False:
+            mov2 = pygame.transform.scale(mov2, (DGwidth, DGheight))
+            extra_height2=0
+        else:
+            mov2 = pygame.transform.scale(mov2, (1.5*DGwidth, 2*DGheight))
+            extra_height2=DGheight/2
+
+        # Inverte imagem se preciso
+        if last_keyj1=='a':
+            mov1=pygame.transform.flip(mov1, True, False)
+        if last_keyj2=='LEFT':
+            mov2 = pygame.transform.flip(mov2, True, False)
+
+        # Plota personagens
+        mov1_rect=mov1.get_rect()
+        mov2_rect=mov2.get_rect()
+
+        mov1_rect.center=(Px1_pos,Py1_pos-extra_height1)
+        mov2_rect.center=(Px2_pos,Py2_pos-extra_height2)
+
+        p1_area=pygame.Rect(Px1_pos-(DGwidth/2),Py1_pos-(DGheight/2),DGwidth,DGheight)
+        p2_area=pygame.Rect(Px2_pos-(DGwidth/2),Py2_pos-(DGheight/2),DGwidth,DGheight)
+
+        window.blit(mov1,mov1_rect)
+        window.blit(mov2,mov2_rect)
+        return p1_area, p2_area
 # Partida
 def partida(mapnumber,current_map_image,current_map_rect,np1,np2,time,timeMS):
     # Variáveis control
@@ -444,59 +498,7 @@ def partida(mapnumber,current_map_image,current_map_rect,np1,np2,time,timeMS):
         # Plota imagens
         window.blit(Pauseb, Pauseb_rect)
 
-        # Verifica base do j1
-        if atual_pos1==0:    
-            mov1 = pygame.image.load(f'images/Personagenspartida/lado/Perslado{np1}.png')
-        elif atual_pos1==1:
-            mov1 = pygame.image.load(f'images/Personagenspartida/soco/Perssoco{np1}.png')
-        else:
-            mov1 = pygame.image.load(f'images/Personagenspartida/chute/Perschute{np1}.png')
-        
-        # Verifica se está gigante
-        if gigante1==False:
-            mov1 = pygame.transform.scale(mov1, (DGwidth, DGheight))
-            extra_height1=0
-        else:
-            mov1 = pygame.transform.scale(mov1, (1.5*DGwidth, 2*DGheight))
-            extra_height1=DGheight/2
-
-        mov1_rect=mov1.get_rect()
-        mov1_rect.center=(Px1_pos,Py1_pos-extra_height1)
-
-        # Verifica base do j2
-        if atual_pos2==0:    
-            mov2 = pygame.image.load(f'images/Personagenspartida/lado/Perslado{np2}.png')
-        elif atual_pos2==1:
-            mov2 = pygame.image.load(f'images/Personagenspartida/soco/Perssoco{np2}.png')
-        else:
-            mov2 = pygame.image.load(f'images/Personagenspartida/chute/Perschute{np2}.png')
-
-        # Verifica se está gigante
-        if gigante2==False:
-            mov2 = pygame.transform.scale(mov2, (DGwidth, DGheight))
-            extra_height2=0
-        else:
-            mov2 = pygame.transform.scale(mov2, (1.5*DGwidth, 2*DGheight))
-            extra_height2=DGheight/2
-
-        # Inverte imagem se preciso
-        if last_keyj1=='a':
-            mov1=pygame.transform.flip(mov1, True, False)
-        if last_keyj2=='LEFT':
-            mov2 = pygame.transform.flip(mov2, True, False)
-
-        # Plota personagens
-        mov1_rect=mov1.get_rect()
-        mov2_rect=mov2.get_rect()
-
-        mov1_rect.center=(Px1_pos,Py1_pos-extra_height1)
-        mov2_rect.center=(Px2_pos,Py2_pos-extra_height2)
-
-        p1_area=pygame.Rect(Px1_pos-(DGwidth/2),Py1_pos-(DGheight/2),DGwidth,DGheight)
-        p2_area=pygame.Rect(Px2_pos-(DGwidth/2),Py2_pos-(DGheight/2),DGwidth,DGheight)
-
-        window.blit(mov1,mov1_rect)
-        window.blit(mov2,mov2_rect)
+        p1_area, p2_area = plota_personagens(atual_pos1,np1,gigante1,Px1_pos, Py1_pos,atual_pos2,np2,gigante2,Px2_pos, Py2_pos,last_keyj1,last_keyj2 )
 
 
         # Cria barras de hp
