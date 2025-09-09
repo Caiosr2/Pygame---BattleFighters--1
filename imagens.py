@@ -1,16 +1,15 @@
 import pygame
+from util import load_image
 
 width=1200
 height=600
 
 # Importa imagem de carregamento
-Loadingimage = pygame.image.load('images/imagens/LogoTelaCarregamento.png')
-Loadingimagewidth=width/2
-Loadingimageheight=height*(2/3)
-Loadingimage = pygame.transform.scale(Loadingimage, (Loadingimagewidth, Loadingimageheight))
-Loadingimage_rect=Loadingimage.get_rect()
-Loadingimage_rect.center=(width/2,height/2)
-
+Loadingimage, Loadingimage_rect = load_image(
+    'images/imagens/LogoTelaCarregamento.png',
+    (width/2, height*(2/3)),
+    (width/2, height/2)
+)
 
 # Cria barra de carregamento
 verticesloadbar1=[(width/4,510*(height/600)),(width/4,525*(height/600)),(3*(width/4),525*(height/600)),(3*(width/4),510*(height/600))]
@@ -25,43 +24,36 @@ conctextrect=conctext.get_rect()
 
 
 # Gera imagem background
-BGSSimage=pygame.image.load('images/imagens/BGtelainicial.png')
-BGSSwidth=width
-BGSSheight=height
-BGSSimage = pygame.transform.scale(BGSSimage, (BGSSwidth, BGSSheight))
-BGSSimage_rect=BGSSimage.get_rect()
-BGSSimage_rect.center=((width/2),(height/2))
+BGSSimage, BGSSimage_rect = load_image(
+    'images/imagens/BGtelainicial.png',
+    (width, height),
+    (width/2, height/2)
+)
 
-
-# Importa imagem de carregamento
-Titleimage = pygame.image.load('images/imagens/BattlefightersArco.png')
-Titleimagewidth=width/2
-Titleimageheight=height/3
-Titleimage = pygame.transform.scale(Titleimage, (Titleimagewidth, Titleimageheight))
-Titleimage_rect=Titleimage.get_rect()
-Titleimage_rect.center=(width/2,(height/2)-(height/4))
-
+# Importa imagem de título
+Titleimage, Titleimage_rect = load_image(
+    'images/imagens/BattlefightersArco.png',
+    (width/2, height/3),
+    (width/2, (height/2)-(height/4))
+)
 
 # Importa imagem de grade de personagens
-Gradeimage=pygame.image.load('images/imagens/Gradepersonagens.png')
-Gradeimagewidth=width*(2/3)
-Gradeimageheight=height*(5/6)
-Gradeimage = pygame.transform.scale(Gradeimage, (Gradeimagewidth, Gradeimageheight))
-Gradeimage_rect=Gradeimage.get_rect()
-Gradeimage_rect.center=((width/2),(height/2))
-
+Gradeimage, Gradeimage_rect = load_image(
+    'images/imagens/Gradepersonagens.png',
+    (width*(2/3), height*(5/6)),
+    (width/2, height/2)
+)
 
 # Imagem Versus
-Versus=pygame.image.load('images/imagens/Versus.png')
-Versuswidth=300
-Versusheight=200
-Versusrect=Versus.get_rect()
-Versusrect.center=(width/2,height/2)
+Versus, Versusrect = load_image(
+    'images/imagens/Versus.png',
+    (width/4, height/3),
+    (width/2, height/2)
+)
 
-
-plano_de_fundo_vitoria = pygame.image.load("images/imagens/plano_de_fundo_vitoria.jpeg")
-plano_de_fundo_vitoria_width=width
-plano_de_fundo_vitoria_height=height
-plano_de_fundo_vitoria_image = pygame.transform.scale(plano_de_fundo_vitoria, (plano_de_fundo_vitoria_width, plano_de_fundo_vitoria_height))
-plano_de_fundo_vitoria_rect=plano_de_fundo_vitoria_image.get_rect()
-plano_de_fundo_vitoria_rect.center=((width/2),(height/2))
+# Plano de fundo da vitória
+plano_de_fundo_vitoria_image, plano_de_fundo_vitoria_rect = load_image(
+    "images/imagens/plano_de_fundo_vitoria.jpeg",
+    size=(width, height),
+    center=(width/2, height/2)
+)
